@@ -11,7 +11,7 @@ public class MoveSpring : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
 
 		Vector3 movement = new Vector3 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical"));

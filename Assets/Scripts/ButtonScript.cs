@@ -7,8 +7,19 @@ public class ButtonScript : MonoBehaviour {
 
 	public void ToMainLevel()
 	{
+		SceneManager.LoadScene (2);
+	}
+
+	public void ToInstructions()
+	{
 		SceneManager.LoadScene (1);
 	}
+
+	public void Restart()
+	{
+		
+	}
+
 	void Start () {
 	
 	}
