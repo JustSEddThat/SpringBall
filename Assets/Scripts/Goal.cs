@@ -3,23 +3,32 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour 
 {
-
-	// Use this for initialization
 	void Start () 
 	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-
-			SceneManager.LoadScene (0);
+		if (SceneManager.GetActiveScene ().buildIndex == 0) 
+		{
 			
-		
+			if (other.CompareTag ("Player"))
+				SceneManager.LoadScene (0);
+		} 
+		else if (other.CompareTag ("Player") && SceneManager.GetActiveScene ().buildIndex == 3)
+			SceneManager.LoadScene (0);
+		else 
+		{
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
+
+		}
 	}
+
 }

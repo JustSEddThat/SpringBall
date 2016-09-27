@@ -3,17 +3,15 @@ using System.Collections;
 using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
-	// Place Springs 1 by 1
-		// move one spring-press enter-shut off that spring-
-	//press enter
-	//Game plays
 	public GameObject spring1, spring2, spring3, ball, UI, button;
 	Text gameNote;
-	public bool isOneOn = false;
+	public bool isOneOn = false, isInPlay = false;
+
 	Vector2 initialPos;
 
 	void Start () 
 	{
+		
 		initialPos = ball.transform.position;
 		ball.GetComponent<Rigidbody2D> ().isKinematic = true;
 		gameNote = UI.GetComponentInChildren<Text>();
@@ -26,7 +24,7 @@ public class GameController : MonoBehaviour {
 	void Update ()
 	{
 		//box1
-		if (Input.GetButtonDown ("Fire1")&& isOneOn == false)
+		if (Input.GetButtonDown ("Fire1")&& isOneOn == false && !isInPlay)
 		{
 			spring1.GetComponent<MoveSpring> ().enabled = true;
 			ShiftGameNoteMessage (spring1);
@@ -40,7 +38,7 @@ public class GameController : MonoBehaviour {
 		}
 			
 		//box2
-		if (Input.GetButtonDown ("Fire2") && isOneOn == false) 
+		if (Input.GetButtonDown ("Fire2") && isOneOn == false && !isInPlay) 
 		{
 			spring2.GetComponent<MoveSpring> ().enabled = true;
 			ShiftGameNoteMessage (spring2);
@@ -54,7 +52,7 @@ public class GameController : MonoBehaviour {
 		}
 			
 		//box3
-		if (Input.GetButtonDown ("Fire3") && isOneOn == false) 
+		if (Input.GetButtonDown ("Fire3") && isOneOn == false && !isInPlay) 
 		{
 			spring3.GetComponent<MoveSpring> ().enabled = true;
 			isOneOn = true;
@@ -73,6 +71,7 @@ public class GameController : MonoBehaviour {
 		{
 			ball.GetComponent<Rigidbody2D> ().isKinematic = false;
 			button.SetActive (true);
+			isInPlay = true;
 			gameNote.text = "Let's see how this would play out. Press reset button to reset the ball.";
 		}
 	}
@@ -92,6 +91,7 @@ public class GameController : MonoBehaviour {
 	{
 		ball.transform.position = initialPos;
 		ball.GetComponent<Rigidbody2D> ().isKinematic = true;
+		isInPlay = false;
 		gameNote.text = "Game Reset";
 	}
 }

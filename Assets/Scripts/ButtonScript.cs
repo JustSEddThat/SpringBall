@@ -9,7 +9,7 @@ public class ButtonScript : MonoBehaviour {
 	{
 		SceneManager.LoadScene (2);
 	}
-
+				
 	public void ToInstructions()
 	{
 		SceneManager.LoadScene (1);
